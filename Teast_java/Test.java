@@ -6,8 +6,10 @@
 
 //"Hello, World!1"
 
-public class HelloWorld {
+class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Привет, мир!");
+        int i = 22;
+        System.out.println(i);
     }
 }
