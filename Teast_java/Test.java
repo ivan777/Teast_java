@@ -9,7 +9,7 @@
 class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Привет, мир!");
-        int i = 22+1;
+        int i = 22+2;
         System.out.println(i);
     }
 }
