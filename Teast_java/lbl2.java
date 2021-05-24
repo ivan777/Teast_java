@@ -25,13 +25,13 @@ public class lbl2 {
 
     public static void main(String[] args) throws FileNotFoundException, CloneNotSupportedException
     {   long start_time = System.currentTimeMillis();
-//       String route = "C:\\Users\\privalovie\\YandexDisk\java\Java_Информатика\Курсовые\Graph6.txt", docsx, str, str1,u, ii;
+//       String route = "C:\\Users\\privalovie\\YandexDisk\\Java_Информатика\\Курсовые\\Gor.txt", docsx, str, str1,u, ii;
 //         Graph Gor Graph12
-        String route = "F:\\YandexDisk\\java\\Java_Информатика\\Курсовые\\Graph6.txt", docsx, str, str1,u, ii;
+        String route = "F:\\YandexDisk\\Универ\\Конструирование\\labs\\lbl2.txt", docsx, str, str1,u, ii;
         int zz,NUMBER_CITIES = 0,i11 = 0,i1 = 0,q = 0;
-        double m;
-
-        int[][] array;
+        double Вparam = 31.21; //общее число ошибок в программе
+        int[] array;
+        double[][] data;
 
         try
         {
@@ -48,112 +48,77 @@ public class lbl2 {
 
             zz = i11;
             NUMBER_CITIES = zz;
-            array = new int[zz][zz];
+            array = new int[zz];
+            data = new double[zz][zz];
 
             while (src.hasNext()) {
-                if(i1!=zz) {
-                    int i2 = 0;
-                    str = src.nextLine();
-                    if(str.length()!=0) {
-                        StringTokenizer st = new StringTokenizer(str, "_");
-                        while (st.hasMoreTokens()) {
-                            docsx = st.nextToken();
-                            array[i1][i2] = Integer.parseInt(docsx);
-                            i2++;}
-                        i1++;}
-                } else {break;}
+                str = src.nextLine();
+                if(str.length()!=0) {
+                    array[i1] = Integer.parseInt(str);
+                    i1++;}
             }
-
             fin.close();
-            if (provverkatxt(array)) {
-                System.out.println("Файл сформирован верно!!!");
+             int z = array.length - 1; // Кол-во ошибок
 
-                int z = array.length - 1;
-
-                System.out.println("============================================");
-                System.out.println("============================================");
-                System.out.print("  |");
-                while (q <= z) {
-                    q++;
-                    u = texet(q);
-                    System.out.print(" " + u + "|");
-                }
-                System.out.println();
-
-                for (int i = 0; i <= z; i++) {
-                    ii = texet(i + 1);
-                    System.out.printf(" " + ii + "|");
-                    for (int j = 0; j <= z; j++) {
-                        m = array[i][j];
-                        System.out.printf("%2.0f|", m);
-                        if (z == (j)) {
-                        }
-                    }
-                    System.out.println();
+            for (int j = 0; j <= z; j++) {
+                int m = array[j], num = j+1;
+                data[j][0] = num; //Номер ошибки (i)
+                data[j][1] = m; //Интервал  между ошибками (Xi, дни)
+                data[j][2] = num*m; //i*Xi
+                data[j][3] = 1/(num-(Вparam+1)); //1/B-i+1
+                data[j][4] = ((Вparam-num)+1)*m; //(B-i+1)*Xi
+                data[j][5] = 1/num; //1/i
                 }
 
-                int[][] maintemp;
-                int x = 0;
-//                x = reduce1(array, x, 9999, 9999);
-                maintemp = reduce(array, x, 9999, 9999);
-                lobject l1 = new lobject(NUMBER_CITIES);
+//            System.out.println("============================================");
+//            System.out.println("============================================");
+//            System.out.print("  |");
+//            while (q <= z) {
+//                q++;
+//                u = texet(q);
+//                System.out.print(" " + u + "|");
+//            }
+//            System.out.println();
 
-                int dl = 0, m1 = 0;
-                String ct = "";
+//            for (int i = 0; i <= z; i++) {
+//                ii = texet(i + 1);
+//                System.out.printf(" " + ii + "|");
+//                for (int j = 0; j <= z; j++) {
+//                    m = array[i][j];
+//                    System.out.printf("%2.0f|", m);
+//                    if (z == (j)) {
+//                    }
+//                }
+//                System.out.println();
+//            }
 
-                for (int i = 0; i <= z; i++) {
-                    for (int j = 0; j <= z; j++) {
-                        if (maintemp[i][j] == 0) {
-                            continue;
-                        } else {
-                            m1 = maintemp[i][j];
-                            dl = dl + m1;
-                            if (ct == "") {
-                                ct = texet(1) + " --> " + texet(i + 1);
-                            } else {
-                                ct = ct + " --> " + texet(i + 1);
-                            }
-                        }
-                    }
-                }
+//            int[][] maintemp;
+//            int x = 0;
+//            lobject l1 = new lobject(NUMBER_CITIES);
+//
+//            int dl = 0, m1 = 0;
+//            String ct = "";
+//
+//            l1.city = ct;
+//            l1.cost = dl;
+//
+//            long stop_time = System.currentTimeMillis();
+//            long run_time = stop_time - start_time;
+//
+//            output(l1,run_time);
 
-                l1.city = ct;
-                l1.cost = dl;
-
-                long stop_time = System.currentTimeMillis();
-                long run_time = stop_time - start_time;
-
-                output(l1,run_time);
+            System.out.println();
+            for (int i = 0; i < data.length;i++) {
+                String test_str = Double.toString(data[i][0]) + " " + Double.toString(data[i][1])+ " " + Double.toString(data[i][2])+ " " + Double.toString(data[i][3])+ " " + Double.toString(data[i][4])+ " " + Double.toString(data[i][5]);
+                System.out.println(test_str);
             }
-            else
-            {
-                System.out.println("Файл сформирован не верно!!!");
-            }
+
         }
 
         catch(IOException e)
         {
             e.printStackTrace();
         }
-    }
-
-    public static int minimum(int min, int zn)
-    {
-        if((zn < min)&&(zn>0))
-        {
-            min = zn;
-
-            if (min == 9999)
-            {
-                return 0;
-            }
-            else
-            {
-                return min;
-            }
-        }
-        else if ((zn == min)&&(zn>0)) {return min;}
-        else {return 0;}
     }
 
     public static class lobject implements Cloneable
@@ -177,48 +142,6 @@ public class lbl2 {
         System.out.println("Время выполнения: " + run_time + " сек.");
         System.out.println("============================================");
         System.out.println("============================================");
-    }
-
-    public static int[][] reduce(int[][] array, int cost, int row, int column)
-    {
-        int[][] matrix = new int[array.length][array.length];
-        int x=0,y=0,zn=0, min = 9999,i00=0;
-        int[] array_to_reduce = new int[array.length];
-        String[] Names = new String[array.length];
-        for(int i=0; i<array.length; i++)
-        {array_to_reduce[i] = minimummin(i,array);}
-        int new_cost = cost;
-        for(int i=0; i<array.length; i++)
-        {
-            if(i == row) continue;
-            for(int j=0; j<array.length; j++) {
-                if (array[i][j] == 0 && j<=i) {
-                    continue;
-                } else {
-                    int cnst = array_to_reduce[i];
-                    cnst = cnst != 0 ? cnst : min;
-                    x = j;
-                    y = i;
-                    if(j>i) {
-                        zn = array[i][j];
-                        int minin = minimum(cnst, zn);
-                        if (minin != 0) {
-                            int index = Arrays.asList(Names).indexOf(String.valueOf(x) + "_" + String.valueOf(y));
-                            if (provverkachikla(index, Names.length)) {
-                                new_cost = minin + new_cost;
-                                Names[i00] = String.valueOf(x) + "_" + String.valueOf(y);
-                                i = x;
-                                j = y + 1;
-                                matrix[x][y] = minin;
-                                i00++;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        return matrix;
     }
 
     public static int minimummin(int i, int [][] array)
@@ -304,63 +227,9 @@ public class lbl2 {
             return "";
     }
 
-    public static boolean provverkatxt (int [][] array)
-    {
-        int z = array.length-1,m=0;
-        boolean tt = true;
-        for (int i=0; i <= z; i++){
-            for (int j=0; j <= z; j++) {
-                if(array[i][j] != array[j][i])
-                {tt = false;}
-            }
-
-        }
-        return tt;
-    }
-
     public static boolean provverkachikla (int tt1, int array)
     {   boolean tt = false;
         if(tt1 == -1){tt = true;}
         return tt;}
 
-
-//    public static int reduce1(int[][] array, int cost, int row, int column)
-//    {
-//        int x,y,zn, min = 9999,i00=0;
-//        int[] array_to_reduce = new int[array.length];
-//        String[] Names = new String[array.length];
-//        for(int i=0; i<array.length; i++)
-//        {array_to_reduce[i] = minimummin(i,array);}
-//        int new_cost = cost;
-//        for(int i=0; i<array.length; i++)
-//        {
-//            if(i == row) continue;
-//            for(int j=0; j<array.length; j++)
-//            {if(array[i][j] == 0 && j<=i) {continue;}
-//            else {
-//                int cnst = array_to_reduce[i];
-//                cnst = cnst != 0 ? cnst : min;
-//                x = j;
-//                y = i;
-//                if(j>i) {
-//                zn = array[i][j];
-//                int minin = minimum(cnst, zn);
-//                if (minin != 0) {
-//                    int index = Arrays.asList(Names).indexOf(String.valueOf(x) + "_" + String.valueOf(y));
-//                    if (provverkachikla(index, Names.length)) {
-//                        System.out.println(String.valueOf(y) + " / " + String.valueOf(x));
-//                        new_cost = minin + new_cost;
-//                        Names[i00] = String.valueOf(x) + "_" + String.valueOf(y);
-//                        i = x;
-//                        j = y + 1;
-//                        i00++;
-//                    }
-//                }
-//            }
-//            }
-//            }
-//        }
-//
-//        return new_cost;
-//    }
 }
