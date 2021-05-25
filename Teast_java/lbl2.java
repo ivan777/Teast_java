@@ -62,8 +62,8 @@ public class lbl2 {
                 data[j][0] = num; //Номер ошибки (i)
                 data[j][1] = m; //Интервал  между ошибками (Xi, дни)
                 data[j][2] = num*m; //i*Xi
-                data[j][3] = 1/(num-(l1.ParamВ+1)); //1/B-i+1
-                data[j][4] = ((l1.ParamВ-num)+1)*m; //(B-i+1)*Xi
+                data[j][3] = 1/(l1.ParamВ-num+1); //1/B-i+1
+                data[j][4] = (l1.ParamВ-num+1)*m; //(B-i+1)*Xi
                 data[j][5] = 1/num; //1/i
 
                 //Суммирование
@@ -80,11 +80,11 @@ public class lbl2 {
             System.out.println("============================================");
             System.out.println("============================================");
             System.out.print(" i|");
-            System.out.print("        Xi|");
-            System.out.print("      i*Xi|");
-            System.out.print("   1/B-i+1|");
-            System.out.print(" (B-i+1)*Xi|");
-            System.out.print("       1/i|");
+            System.out.print("                 Xi|");
+            System.out.print("               i*Xi|");
+            System.out.print("             1/B-i+1|");
+            System.out.print("           (B-i+1)*Xi|");
+            System.out.print("                1/i|");
             System.out.println();
 
             for (int i = 0; i <= z; i++) {
@@ -92,7 +92,7 @@ public class lbl2 {
                 for (int j = 1; j <= 5; j++) {
                     double m = data[i][j];
                     System.out.print("        ");
-                    System.out.printf("%2.0f|", m);
+                    System.out.printf("%2.9f|", m);
                     if (z == (j)) {
                     }
                 }
@@ -101,15 +101,15 @@ public class lbl2 {
 
             l1.EiXi = summj2;//E(i*Xi)
             l1.EXi = summj1;//E(Xi)
-            l1.nEXi = z * summj1;//n * E(Xi)
+            l1.nEXi = zz * summj1;//n * E(Xi)
             l1.EBi1Xi = summj4;//E((B-i+1)*Xi)
-            l1.Bn = l1.ParamВ - z;//B - n
+            l1.Bn = l1.ParamВ - zz;//B - n
             l1.B1EXi = (l1.ParamВ + 1)*summj1;//(B+1) * E(Xi)
             l1.Fb1 = summj3;//F(b1)
             l1.Fb2 = l1.nEXi/(l1.B1EXi-l1.EXi);//F(b2)
             l1.Fb1Fb2 = l1.Fb1 - l1.Fb2;//F(b1) - F(b2)
-            l1.K = z/l1.EBi1Xi;//K
-            l1.Xn1 = 1/(l1.K*(l1.ParamВ - z));//Xn+1
+            l1.K = zz/l1.EBi1Xi;//K
+            l1.Xn1 = 1/(l1.K*(l1.ParamВ - zz));//Xn+1
             l1.tk = (1/l1.K)*(summj5_5);//tk
 
             long stop_time = System.currentTimeMillis();
