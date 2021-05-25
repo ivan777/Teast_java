@@ -27,9 +27,9 @@ public class lbl2 {
     {   long start_time = System.currentTimeMillis();
 //       String route = "C:\\Users\\privalovie\\YandexDisk\\Java_Информатика\\Курсовые\\Gor.txt", docsx, str, str1,u, ii;
 //         Graph Gor Graph12
-        String route = "F:\\YandexDisk\\Универ\\Конструирование\\labs\\lbl2.txt", docsx, str, str1,u, ii;
-        int zz,NUMBER_CITIES = 0,i11 = 0,i1 = 0,q = 0;
-        double Вparam = 31.21; //общее число ошибок в программе
+        String route = "F:\\YandexDisk\\Универ\\Конструирование\\labs\\lbl2.txt", str, str1;
+        int zz=0,i1 = 0;
+        double summj1 = 0.0, summj2 = 0.0, summj3 = 0.0, summj4 = 0.0, summj5 = 0.0, summj5_5 = 0.0; //общее число ошибок в программе
         int[] array;
         double[][] data;
 
@@ -38,16 +38,12 @@ public class lbl2 {
             FileReader finkol = new FileReader(route);
             Scanner src1 = new Scanner(finkol); // Чтение из файла
 
-            while (src1.hasNext()) {
-                str1 = src1.nextLine();
-                i11++;}
+            while (src1.hasNext()) {str1 = src1.nextLine(); zz++;}
 
             finkol.close();
             FileReader fin = new FileReader(route);
             Scanner src = new Scanner(fin); // Чтение из файла
 
-            zz = i11;
-            NUMBER_CITIES = zz;
             array = new int[zz];
             data = new double[zz][zz];
 
@@ -58,60 +54,67 @@ public class lbl2 {
                     i1++;}
             }
             fin.close();
-             int z = array.length - 1; // Кол-во ошибок
-
+            int z = array.length - 1; // Кол-во ошибок
+            lobject l1 = new lobject();
+            l1.ParamВ = 31.21; // В
             for (int j = 0; j <= z; j++) {
                 int m = array[j], num = j+1;
                 data[j][0] = num; //Номер ошибки (i)
                 data[j][1] = m; //Интервал  между ошибками (Xi, дни)
                 data[j][2] = num*m; //i*Xi
-                data[j][3] = 1/(num-(Вparam+1)); //1/B-i+1
-                data[j][4] = ((Вparam-num)+1)*m; //(B-i+1)*Xi
+                data[j][3] = 1/(num-(l1.ParamВ+1)); //1/B-i+1
+                data[j][4] = ((l1.ParamВ-num)+1)*m; //(B-i+1)*Xi
                 data[j][5] = 1/num; //1/i
+
+                //Суммирование
+                summj1 = summj1 + data[j][1]; //Интервал  между ошибками (Xi, дни)
+                summj2 = summj2 + data[j][2]; //i*Xi
+                summj3 = summj3 + data[j][3]; //1/B-i+1
+                summj4 = summj4 + data[j][4]; //(B-i+1)*Xi
+                summj5 = summj5 + data[j][5]; //1/i
+                if (m<=5) {
+                        summj5_5 = summj5_5 + data[j][5]; //1/i
+                    }
                 }
 
-//            System.out.println("============================================");
-//            System.out.println("============================================");
-//            System.out.print("  |");
-//            while (q <= z) {
-//                q++;
-//                u = texet(q);
-//                System.out.print(" " + u + "|");
-//            }
-//            System.out.println();
-
-//            for (int i = 0; i <= z; i++) {
-//                ii = texet(i + 1);
-//                System.out.printf(" " + ii + "|");
-//                for (int j = 0; j <= z; j++) {
-//                    m = array[i][j];
-//                    System.out.printf("%2.0f|", m);
-//                    if (z == (j)) {
-//                    }
-//                }
-//                System.out.println();
-//            }
-
-//            int[][] maintemp;
-//            int x = 0;
-//            lobject l1 = new lobject(NUMBER_CITIES);
-//
-//            int dl = 0, m1 = 0;
-//            String ct = "";
-//
-//            l1.city = ct;
-//            l1.cost = dl;
-//
-//            long stop_time = System.currentTimeMillis();
-//            long run_time = stop_time - start_time;
-//
-//            output(l1,run_time);
-
+            System.out.println("============================================");
+            System.out.println("============================================");
+            System.out.print(" i|");
+            System.out.print("        Xi|");
+            System.out.print("      i*Xi|");
+            System.out.print("   1/B-i+1|");
+            System.out.print(" (B-i+1)*Xi|");
+            System.out.print("       1/i|");
             System.out.println();
-            for (int i = 0; i < data.length;i++) {
-                String test_str = Double.toString(data[i][0]) + " " + Double.toString(data[i][1])+ " " + Double.toString(data[i][2])+ " " + Double.toString(data[i][3])+ " " + Double.toString(data[i][4])+ " " + Double.toString(data[i][5]);
-                System.out.println(test_str);
+
+            for (int i = 0; i <= z; i++) {
+                System.out.printf("%2.0f|", data[i][0]);
+                for (int j = 1; j <= 5; j++) {
+                    double m = data[i][j];
+                    System.out.print("        ");
+                    System.out.printf("%2.0f|", m);
+                    if (z == (j)) {
+                    }
+                }
+                System.out.println();
             }
+
+            l1.EiXi = summj2;//E(i*Xi)
+            l1.EXi = summj1;//E(Xi)
+            l1.nEXi = z * summj1;//n * E(Xi)
+            l1.EBi1Xi = summj4;//E((B-i+1)*Xi)
+            l1.Bn = l1.ParamВ - z;//B - n
+            l1.B1EXi = (l1.ParamВ + 1)*summj1;//(B+1) * E(Xi)
+            l1.Fb1 = summj3;//F(b1)
+            l1.Fb2 = l1.nEXi/(l1.B1EXi-l1.EXi);//F(b2)
+            l1.Fb1Fb2 = l1.Fb1 - l1.Fb2;//F(b1) - F(b2)
+            l1.K = z/l1.EBi1Xi;//K
+            l1.Xn1 = 1/(l1.K*(l1.ParamВ - z));//Xn+1
+            l1.tk = (1/l1.K)*(summj5_5);//tk
+
+            long stop_time = System.currentTimeMillis();
+            long run_time = stop_time - start_time;
+            output(l1,run_time);
 
         }
 
@@ -122,114 +125,34 @@ public class lbl2 {
     }
 
     public static class lobject implements Cloneable
-    {
-        String city;
-        int cost;
-        int[][] matrix ;
-        lobject(int number)
-        {
-            matrix = new int[number][number];
-        }
-    }
+    {double ParamВ, EiXi, EXi, nEXi, EBi1Xi, Bn, B1EXi, Fb1, Fb2, Fb1Fb2, K, Xn1, tk;}
 
     public static void output(lobject l1, long run_time)
     {
         System.out.println("============================================");
         System.out.println("============================================");
-        System.out.println("Путь коммивояжера: "+l1.city);
-        System.out.println("Стоимость пути коммивояжера в одну сторону: "+l1.cost);
-        System.out.println("Стоимость пути коммивояжера в обе стороны: "+(l1.cost*2));
+        System.out.println("Тестовые параметры:");
+        System.out.println("B: "+l1.ParamВ);
+        System.out.println("E(i*Xi): "+l1.EiXi);
+        System.out.println("E(Xi): "+l1.EXi);
+        System.out.println("n * E(Xi): "+l1.nEXi);
+        System.out.println("E((B-i+1)*Xi): "+l1.EBi1Xi);
+        System.out.println("B - n: "+l1.Bn);
+        System.out.println("(B+1) * E(Xi): "+l1.B1EXi);
+        System.out.println("============================================");
+        System.out.println("a)");
+        System.out.println("F(b1): "+l1.Fb1);
+        System.out.println("F(b2): "+l1.Fb2);
+        System.out.println("F(b1) - F(b2): "+l1.Fb1Fb2);
+        System.out.println("b)");
+        System.out.println("K: "+l1.K);
+        System.out.println("c)");
+        System.out.println("Xn+1: "+l1.Xn1);
+        System.out.println("d)");
+        System.out.println("tk: "+l1.tk);
         System.out.println("Время выполнения: " + run_time + " сек.");
         System.out.println("============================================");
         System.out.println("============================================");
     }
-
-    public static int minimummin(int i, int [][] array)
-    {   int[] array_to_reduce = new int[array.length];
-        for(int j=0;j<array.length;j++)
-        {if (j>i)
-        {array_to_reduce[j] = array[j][i];}
-        }
-
-        int min = 9999;
-        for(int in=0; in < array_to_reduce.length; in++)
-        {
-            if (i == (array.length - 2)) {
-                if (array_to_reduce[i + 1] < min && (array_to_reduce[i + 1] > 0)) {
-                    min = array_to_reduce[i + 1];
-                }
-            } else if (i == (array.length - 1)) {
-                min = 0;
-            } else {
-
-                if (array_to_reduce[in] < min && (array_to_reduce[in] > 0)) {
-                    min = array_to_reduce[in];
-                }
-            }
-        }
-
-        if (min == 9999)
-        {return 0;}
-        else
-        {return min;}}
-
-    public static String texet (int cost)
-    {
-        if(cost == 1)
-        {return "A";}
-        else if(cost == 2)
-        {return "B";}
-        else if(cost == 3)
-        {return "C";}
-        else if(cost == 4)
-        {return "D";}
-        else if(cost == 5)
-        {return "E";}
-        else if(cost == 6)
-        {return "F";}
-        else if(cost == 7)
-        {return "J";}
-        else if(cost == 8)
-        {return "K";}
-        else if(cost == 9)
-        {return "K";}
-        else if(cost == 10)
-        {return "L";}
-        else if(cost == 11)
-        {return "M";}
-        else if(cost == 12)
-        {return "N";}
-        else if(cost == 13)
-        {return "O";}
-        else if(cost == 14)
-        {return "P";}
-        else if(cost == 15)
-        {return "Q";}
-        else if(cost == 16)
-        {return "R";}
-        else if(cost == 17)
-        {return "S";}
-        else if(cost == 18)
-        {return "T";}
-        else if(cost == 19)
-        {return "U";}
-        else if(cost == 20)
-        {return "V";}
-        else if(cost == 21)
-        {return "W";}
-        else if(cost == 22)
-        {return "X";}
-        else if(cost == 23)
-        {return "Y";}
-        else if(cost == 24)
-        {return "Z";}
-        else
-            return "";
-    }
-
-    public static boolean provverkachikla (int tt1, int array)
-    {   boolean tt = false;
-        if(tt1 == -1){tt = true;}
-        return tt;}
 
 }
