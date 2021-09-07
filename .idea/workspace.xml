@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8f68b82-c079-4e5a-ac91-875e729a5447" name="Changes" comment="Рефакторинг кода">
+    <list default="true" id="d8f68b82-c079-4e5a-ac91-875e729a5447" name="Changes" comment="Старая версия">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Teast_java/lbl3.java" beforeDir="false" afterPath="$PROJECT_DIR$/Teast_java/lbl3.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,7 +83,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1631026506313</updated>
-      <workItem from="1631026508254" duration="12458000" />
+      <workItem from="1631026508254" duration="12501000" />
     </task>
     <task id="LOCAL-00001" summary="Рефакторинг кода">
       <created>1631032293867</created>
@@ -112,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631038998296</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Старая версия">
+      <created>1631039050918</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1631039050918</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +139,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Рефакторинг кода" />
-    <option name="LAST_COMMIT_MESSAGE" value="Рефакторинг кода" />
+    <MESSAGE value="Старая версия" />
+    <option name="LAST_COMMIT_MESSAGE" value="Старая версия" />
   </component>
 </project>

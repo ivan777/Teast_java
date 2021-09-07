@@ -72,9 +72,9 @@ public class lbl3 {
         bv[4][1] = 0;
 
         double[][] data = new double [6][4];
-        int sumB = 0;
-        int sumV = 0;
-        double sumF = 0;
+        int sumB;
+        int sumV;
+        double sumF;
         /**
          * Нулевой столбец - R
          * Первый столбец - B
@@ -83,6 +83,9 @@ public class lbl3 {
          */
 
         //C(λ,R) = 1/λ+1/R
+        sumB = 0;
+        sumV = 0;
+        sumF = 0;
         System.out.println("" +" " + "R" + " " + "B" + " " + "V" + " " + "C(λ,R)");
         for (int i = 0; i<=5;i++){
             if (i==0){
@@ -103,10 +106,109 @@ public class lbl3 {
                 sumF = sumF + f;
                 double r = tr * (1+(1 * 0.001) * (sumV - sumF));
                 data[i][0] = r;
+                data[i][3] = f;
             }
-            String srNumber = String.valueOf(i);
-            String srValue = String.format("%.3f",data[i][0]);
-            System.out.println("r"+String.valueOf(i) +": " + data[i][0] + " " + data[i][1] + " " + data[i][2] + " " + data[i][3]);
+            String srNumber = "r"+String.valueOf(i)+":";
+            String srValue = String.format("%.0f",data[i][0]);
+            String sbValue = String.format("%.0f",data[i][1]);
+            String svValue = String.format("%.0f",data[i][2]);
+            String sfValue = String.format("%.0f",data[i][3]);
+            if (sbValue.equals("0")){
+                sbValue = "";
+            }
+            if (svValue.equals("0")){
+                svValue = "";
+            }
+            if (sfValue.equals("0")){
+                sfValue = "";
+            }
+            System.out.println(srNumber +" " + srValue + " " + sbValue + " " + svValue + " " + sfValue);
+        }
+
+        //C(λ,R) = 1/(λ*R)
+        sumB = 0;
+        sumV = 0;
+        sumF = 0;
+        System.out.println("" +" " + "R" + " " + "B" + " " + "V" + " " + "C(λ,R)");
+        for (int i = 0; i<=5;i++){
+            if (i==0){
+                data[i][0] = r0;
+                data[i][1] = 0;
+                data[i][2] = 0;
+                data[i][3] = 0;
+            }
+            else {
+                double tr = data[i-1][0];
+                int tb = bv[i-1][0];
+                int tv = bv[i-1][1];
+                double f = tb / ((1/lamda) * (1 / tr));
+                data[i][1] = tb;
+                data[i][2] = tv;
+                sumB = sumB + tb;
+                sumV = sumV + tv;
+                sumF = sumF + f;
+                double r = tr * (1+(1 * 0.001) * (sumV - sumF));
+                data[i][0] = r;
+                data[i][3] = f;
+            }
+            String srNumber = "r"+String.valueOf(i)+":";
+            String srValue = String.format("%.0f",data[i][0]);
+            String sbValue = String.format("%.0f",data[i][1]);
+            String svValue = String.format("%.0f",data[i][2]);
+            String sfValue = String.format("%.0f",data[i][3]);
+            if (sbValue.equals("0")){
+                sbValue = "";
+            }
+            if (svValue.equals("0")){
+                svValue = "";
+            }
+            if (sfValue.equals("0")){
+                sfValue = "";
+            }
+            System.out.println(srNumber +" " + srValue + " " + sbValue + " " + svValue + " " + sfValue);
+        }
+
+        //C(λ,R) = 1/(λ+R)
+        sumB = 0;
+        sumV = 0;
+        sumF = 0;
+        System.out.println("" +" " + "R" + " " + "B" + " " + "V" + " " + "C(λ,R)");
+        for (int i = 0; i<=5;i++){
+            if (i==0){
+                data[i][0] = r0;
+                data[i][1] = 0;
+                data[i][2] = 0;
+                data[i][3] = 0;
+            }
+            else {
+                double tr = data[i-1][0];
+                int tb = bv[i-1][0];
+                int tv = bv[i-1][1];
+                double f = tb / (1/(lamda + tr));
+                data[i][1] = tb;
+                data[i][2] = tv;
+                sumB = sumB + tb;
+                sumV = sumV + tv;
+                sumF = sumF + f;
+                double r = tr * (1+(1 * 0.001) * (sumV - sumF));
+                data[i][0] = r;
+                data[i][3] = f;
+            }
+            String srNumber = "r"+String.valueOf(i)+":";
+            String srValue = String.format("%.0f",data[i][0]);
+            String sbValue = String.format("%.0f",data[i][1]);
+            String svValue = String.format("%.0f",data[i][2]);
+            String sfValue = String.format("%.0f",data[i][3]);
+            if (sbValue.equals("0")){
+                sbValue = "";
+            }
+            if (svValue.equals("0")){
+                svValue = "";
+            }
+            if (sfValue.equals("0")){
+                sfValue = "";
+            }
+            System.out.println(srNumber +" " + srValue + " " + sbValue + " " + svValue + " " + sfValue);
         }
     }
 
