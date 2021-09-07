@@ -15,7 +15,7 @@ public class lbl3 {
 //       String route = "C:\\Users\\privalovie\\YandexDisk\\Универ\\Конструирование\\labs\\lbl3.txt", str, str1, docsx;
 //         Graph Gor Graph12
         //String route = "F:\\YandexDisk\\Универ\\Конструирование\\labs\\lbl3.txt", str, str1, docsx;
-        int zz = 0,i11 = 0, i1 = 0, A = 20,B = 30,C = 10,D = 3, m = 30, v = 15, r0 = 1000,arrayV = 0;
+        int zz = 5,i11 = 0, i1 = 0, A = 20,B = 30,C = 10,D = 3, m = 30, v = 15, r0 = 1000,arrayV = 0;
         double lamda = 1.53, R_1 = 0.0, R_2 = 0.0, R_3 = 0.0, CAR_1 = 0.0, CAR_2 = 0.0, CAR_3 = 0.0; //уровень языка программирования ////λ
         int[][] array;
         //double[][] data;
@@ -55,10 +55,6 @@ public class lbl3 {
         l1.B_2 = l1.V_2/3000;//B
         l1.TN_2 = l1.TK_2/(2*(log(l1.B_2)));//tn
 
-        long stop_time = System.currentTimeMillis();
-        long run_time = stop_time - start_time;
-        output(l1,zz,run_time);
-
         //Третья задача
         //B, V
         int [][] bv = new int[5][2];
@@ -90,8 +86,8 @@ public class lbl3 {
         sumB = 0;
         sumV = 0;
         sumF = 0;
-        System.out.println("" +" " + "R" + " " + "B" + " " + "V" + " " + "C(λ,R)");
-        for (int i = 0; i<=5;i++){
+//        System.out.println("" +" " + "R" + " " + "B" + " " + "V" + " " + "C(λ,R)");
+        for (int i = 0; i<=zz;i++){
             if (i==0){
                 data[i][0] = r0;
                 data[i][1] = 0;
@@ -126,15 +122,17 @@ public class lbl3 {
             if (sfValue.equals("0")){
                 sfValue = "";
             }
-            System.out.println(srNumber +" " + srValue + " " + sbValue + " " + svValue + " " + sfValue);
+//            System.out.println(srNumber +" " + srValue + " " + sbValue + " " + svValue + " " + sfValue);
         }
+
+        l1.data1 = data;
 
         //C(λ,R) = 1/(λ*R)
         sumB = 0;
         sumV = 0;
         sumF = 0;
-        System.out.println("" +" " + "R" + " " + "B" + " " + "V" + " " + "C(λ,R)");
-        for (int i = 0; i<=5;i++){
+//        System.out.println("" +" " + "R" + " " + "B" + " " + "V" + " " + "C(λ,R)");
+        for (int i = 0; i<=zz;i++){
             if (i==0){
                 data[i][0] = r0;
                 data[i][1] = 0;
@@ -169,15 +167,18 @@ public class lbl3 {
             if (sfValue.equals("0")){
                 sfValue = "";
             }
-            System.out.println(srNumber +" " + srValue + " " + sbValue + " " + svValue + " " + sfValue);
+//            System.out.println(srNumber +" " + srValue + " " + sbValue + " " + svValue + " " + sfValue);
         }
+
+        l1.data2 = data;
+
 
         //C(λ,R) = 1/(λ+R)
         sumB = 0;
         sumV = 0;
         sumF = 0;
-        System.out.println("" +" " + "R" + " " + "B" + " " + "V" + " " + "C(λ,R)");
-        for (int i = 0; i<=5;i++){
+//        System.out.println("" +" " + "R" + " " + "B" + " " + "V" + " " + "C(λ,R)");
+        for (int i = 0; i<=zz;i++){
             if (i==0){
                 data[i][0] = r0;
                 data[i][1] = 0;
@@ -212,13 +213,20 @@ public class lbl3 {
             if (sfValue.equals("0")){
                 sfValue = "";
             }
-            System.out.println(srNumber +" " + srValue + " " + sbValue + " " + svValue + " " + sfValue);
+//            System.out.println(srNumber +" " + srValue + " " + sbValue + " " + svValue + " " + sfValue);
+
         }
+
+        l1.data3 = data;
+
+        long stop_time = System.currentTimeMillis();
+        long run_time = stop_time - start_time;
+        output(l1,zz,run_time);
     }
 
     public static class lobject implements Cloneable
     {double lamda, n2_1, B_1, V_1, k_2, i_2, K_2, N_2, V_2, P_2, TK_2, B_2, TN_2, m_2, v_2;
-        double[][] data;
+        double[][] data1,data2,data3;
     }
 
     public static void output(lobject l1,int zz, long run_time)
@@ -263,6 +271,85 @@ public class lbl3 {
 
         System.out.println("============================================");
         System.out.println("Третья задача");
+        System.out.println("============================================");
+        System.out.println("C(λ,R) = 1/λ+1/R");
+        System.out.println("============================================");
+        System.out.print(" ri|");
+        System.out.print("          R|");
+        System.out.print("       B|");
+        System.out.print("       V|");
+        System.out.print("  C(λ,R)|");
+        System.out.println();
+
+        for (int i = 0; i <= zz; i++) {
+            double nom = i;
+            System.out.printf("r%2.0f|", nom);
+            System.out.print("    ");
+            System.out.printf("%2.2f|", l1.data1[i][0]);//R
+            System.out.print("    ");
+            System.out.printf("%2.2f|", l1.data1[i][1]);//B
+            System.out.print("    ");
+            System.out.printf("%2.2f|", l1.data1[i][2]);//V
+            System.out.print("    ");
+            System.out.printf("%2.4f|", l1.data1[i][3]);//C(λ,R)
+            System.out.println();
+        }
+        System.out.println("============================================");
+
+
+        System.out.println("============================================");
+        System.out.println("C(λ,R) = 1/(λ*R)");
+        System.out.println("============================================");
+        System.out.print(" ri|");
+        System.out.print("          R|");
+        System.out.print("       B|");
+        System.out.print("       V|");
+        System.out.print("  C(λ,R)|");
+        System.out.println();
+
+        for (int i = 0; i <= zz; i++) {
+            double nom = i;
+            System.out.printf("r%2.0f|", nom);
+            System.out.print("    ");
+            System.out.printf("%2.2f|", l1.data2[i][0]);//R
+            System.out.print("    ");
+            System.out.printf("%2.2f|", l1.data2[i][1]);//B
+            System.out.print("    ");
+            System.out.printf("%2.2f|", l1.data2[i][2]);//V
+            System.out.print("    ");
+            System.out.printf("%2.2f|", l1.data2[i][3]);//C(λ,R)
+            System.out.println();
+        }
+        System.out.println("============================================");
+
+
+        System.out.println("============================================");
+        System.out.println("C(λ,R) = 1/(λ+R)");
+        System.out.println("============================================");
+        System.out.print(" ri|");
+        System.out.print("          R|");
+        System.out.print("       B|");
+        System.out.print("       V|");
+        System.out.print("  C(λ,R)|");
+        System.out.println();
+
+        for (int i = 0; i <= zz; i++) {
+            double nom = i;
+            System.out.printf("r%2.0f|", nom);
+            System.out.print("    ");
+            System.out.printf("%2.2f|", l1.data3[i][0]);//R
+            System.out.print("    ");
+            System.out.printf("%2.2f|", l1.data3[i][1]);//B
+            System.out.print("    ");
+            System.out.printf("%2.2f|", l1.data3[i][2]);//V
+            System.out.print("    ");
+            System.out.printf("%2.2f|", l1.data3[i][3]);//C(λ,R)
+            System.out.println();
+        }
+        System.out.println("============================================");
+
+        System.out.println("Время выполнения: " + run_time + " сек.");
+        System.out.println("============================================");
         System.out.println("============================================");
     }
 
