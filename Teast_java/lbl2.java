@@ -29,13 +29,67 @@ public class lbl2 {
 //         Graph Gor Graph12
 //        String route = "F:\\YandexDisk\\Универ\\Конструирование\\labs\\lbl2.txt", str, str1;
         int zz=0,i1 = 0;
+        double b = 31.21;
         double summj1 = 0.0, summj2 = 0.0, summj3 = 0.0, summj4 = 0.0, summj5 = 0.0, summj5_5 = 0.0; //общее число ошибок в программе
         int[] array;
-        double[][] data;
+        //double[][] data;
+        int [][] data = new int[26][2];
 
-        try
-        {
-            FileReader finkol = new FileReader(route);
+        data[0][0] = 1;
+        data[1][0] = 2;
+        data[2][0] = 3;
+        data[3][0] = 4;
+        data[4][0] = 5;
+        data[5][0] = 6;
+        data[6][0] = 7;
+        data[7][0] = 8;
+        data[8][0] = 9;
+        data[9][0] = 10;
+        data[10][0] = 11;
+        data[11][0] = 12;
+        data[12][0] = 13;
+        data[13][0] = 14;
+        data[14][0] = 15;
+        data[15][0] = 16;
+        data[16][0] = 17;
+        data[17][0] = 18;
+        data[18][0] = 19;
+        data[19][0] = 20;
+        data[20][0] = 21;
+        data[21][0] = 22;
+        data[22][0] = 23;
+        data[23][0] = 24;
+        data[24][0] = 25;
+        data[25][0] = 26;
+
+        data[0][1] = 9;
+        data[1][1] = 12;
+        data[2][1] = 11;
+        data[3][1] = 4;
+        data[4][1] = 7;
+        data[5][1] = 2;
+        data[6][1] = 5;
+        data[7][1] = 8;
+        data[8][1] = 5;
+        data[9][1] = 7;
+        data[10][1] = 1;
+        data[11][1] = 6;
+        data[12][1] = 1;
+        data[13][1] = 9;
+        data[14][1] = 4;
+        data[15][1] = 1;
+        data[16][1] = 3;
+        data[17][1] = 3;
+        data[18][1] = 6;
+        data[19][1] = 1;
+        data[20][1] = 11;
+        data[21][1] = 33;
+        data[22][1] = 7;
+        data[23][1] = 91;
+        data[24][1] = 2;
+        data[25][1] = 1;
+
+            /*FileReader finkol = new FileReader(route);
             Scanner src1 = new Scanner(finkol); // Чтение из файла
 
             while (src1.hasNext()) {str1 = src1.nextLine(); zz++;}
@@ -53,83 +107,103 @@ public class lbl2 {
                     array[i1] = Integer.parseInt(str);
                     i1++;}
             }
-            fin.close();
-            int z = array.length - 1; // Кол-во ошибок
-            lobject l1 = new lobject();
-            l1.ParamВ = 31.21; // В
-            for (int j = 0; j <= z; j++) {
-                int m = array[j], num = j+1;
-                double Param5 = (num);
-                data[j][0] = num; //Номер ошибки (i)
-                data[j][1] = m; //Интервал  между ошибками (Xi, дни)
-                data[j][2] = num*m; //i*Xi
-                data[j][3] = 1/(l1.ParamВ-num+1); //1/B-i+1
-                data[j][4] = (l1.ParamВ-num+1)*m; //(B-i+1)*Xi
-                data[j][5] = 1/Param5; //1/i
+            fin.close();*/
 
-                //Суммирование
-                summj1 = summj1 + data[j][1]; //Интервал  между ошибками (Xi, дни)
-                summj2 = summj2 + data[j][2]; //i*Xi
-                summj3 = summj3 + data[j][3]; //1/B-i+1
-                summj4 = summj4 + data[j][4]; //(B-i+1)*Xi
-                summj5 = summj5 + data[j][5]; //1/i
-                if (num<=5) {
-                        summj5_5 = summj5_5 + data[j][5]; //1/i
-                    }
-                }
+            List<sobject> lSobjects = new ArrayList<>();
 
-            System.out.println("============================================");
-            System.out.println("============================================");
-            System.out.print(" i|");
-            System.out.print("          Xi|");
-            System.out.print("        i*Xi|");
-            System.out.print("            1/B-i+1|");
-            System.out.print("    (B-i+1)*Xi|");
-            System.out.print("                1/i|");
-            System.out.println();
+            for (int m = 0; m<=25;m++){
+                sobject s = new sobject();
+                //Номер ошибки (i)
+                double i = data[m][0];
+                //Интервал между ошибками (Xi, дни)
+                int xi = data[m][1];
+                // i * Xi
+                double p1 = i * xi;
+                // 1/B-i+1
+                double p2 = 1 / (b - i + 1);
+                // (B-i+1)*Xi
+                double p3 = (b - i + 1) * xi;
+                // 1/i
+                double p4 = 1 / i;
 
-            for (int i = 0; i <= z; i++) {
-                System.out.printf("%2.0f|", data[i][0]);
-                for (int j = 1; j <= 5; j++) {
-                    double m = data[i][j];
-                    System.out.print("        ");
-                    if(j == 3 || j == 5)
-                    {
-                        System.out.printf("%2.9f|", m);
-                    }
-                    else {
-                        System.out.printf("%2.2f|", m);
-                    }
-                    if (z == (j)) {
-                    }
-                }
-                System.out.println();
+                s.i = (int)i;
+                s.xi = xi;
+                s.coeff1 = p1;
+                s.coeff2 = p2;
+                s.coeff3 = p3;
+                s.coeff4 = p4;
+                lSobjects.add(s);
             }
 
-            l1.EiXi = summj2;//E(i*Xi)
-            l1.EXi = summj1;//E(Xi)
-            l1.nEXi = zz * summj1;//n * E(Xi)
-            l1.EBi1Xi = summj4;//E((B-i+1)*Xi)
-            l1.Bn = l1.ParamВ - zz;//B - n
-            l1.B1EXi = (l1.ParamВ + 1)*summj1;//(B+1) * E(Xi)
-            l1.Fb1 = summj3;//F(b1)
-            l1.Fb2 = l1.nEXi/(l1.B1EXi-l1.EiXi);//F(b2)
-            l1.Fb1Fb2 = l1.Fb1 - l1.Fb2;//F(b1) - F(b2)
-            l1.K = zz/l1.EBi1Xi;//K
-            l1.Xn1 = 1/(l1.K*(l1.ParamВ - zz));//Xn+1
-            l1.tk = (1/l1.K)*(summj5_5);//tk
+            if (!lSobjects.isEmpty()){
+                int iCount = 0;
+                double EiXi = 0;
+                double EXi = 0;
+                double nEXi = 0;
+                double EBi1Xi = 0;
+                double Bn = 0;
+                double B1EXi = 0;
+                double fb1 = 0;
+                double fb2 = 0;
+                double fb3 = 0;
+                double k = 0;
+                double xn1 = 0;
+                double tk = 0;
+                double odi = 0;
+                List <Double> lP4 = new ArrayList<>();
+                for (sobject s : lSobjects){
+                    int i = s.i;
+                    int xi = s.xi;
+                    double p1 = s.coeff1;
+                    double p2 = s.coeff2;
+                    double p3 = s.coeff3;
+                    double p4 = s.coeff4;
 
-            long stop_time = System.currentTimeMillis();
-            long run_time = stop_time - start_time;
-            output(l1,run_time);
+                    EiXi = EiXi + p1;
+                    EXi = EXi + xi;
+                    iCount++;
+                    EBi1Xi = EBi1Xi + p3;
+                    fb1 = fb1 + p2;
+                    lP4.add(p4);
+                }
+                Bn = b - iCount;
+                nEXi = iCount * EXi;
+                B1EXi = (b + 1) * EXi;
+                fb2 = nEXi / (B1EXi - EiXi);
+                fb3 = fb1 - fb2;
+                k = iCount / EBi1Xi;
+                xn1 = 1 / (k * (b - iCount));
 
-        }
+                for (int xz = 0; xz<(int) Bn; xz++){
+                    odi = odi + lP4.get(xz);
+                }
 
-        catch(IOException e)
-        {
-            e.printStackTrace();
-        }
+                tk = (1.0 / k) * odi;
+
+                lobject l1 = new lobject();
+
+                l1.ParamВ = b;
+                l1.EiXi = EiXi;//E(i*Xi)
+                l1.EXi = EXi;//E(Xi)
+                l1.nEXi = nEXi;//n * E(Xi)
+                l1.EBi1Xi = EBi1Xi;//E((B-i+1)*Xi)
+                l1.Bn = Bn;//B - n
+                l1.B1EXi = B1EXi;//(B+1) * E(Xi)
+                l1.Fb1 = fb1;//F(b1)
+                l1.Fb2 = fb2;//F(b2)
+                l1.Fb1Fb2 = fb3;//F(b1) - F(b2)
+                l1.K = k;//K
+                l1.Xn1 = xn1;//Xn+1
+                l1.tk = tk;//tk
+
+                long stop_time = System.currentTimeMillis();
+                long run_time = stop_time - start_time;
+                output(l1,run_time);
+            }
     }
+
+    public static class sobject implements Cloneable
+    {int i, xi; double coeff1, coeff2, coeff3, coeff4;}
 
     public static class lobject implements Cloneable
     {double ParamВ, EiXi, EXi, nEXi, EBi1Xi, Bn, B1EXi, Fb1, Fb2, Fb1Fb2, K, Xn1, tk;}
