@@ -132,6 +132,7 @@ public class lbl3 {
         sumV = 0;
         sumF = 0;
 //        System.out.println("" +" " + "R" + " " + "B" + " " + "V" + " " + "C(λ,R)");
+        data = new double [6][4];
         for (int i = 0; i<=zz;i++){
             if (i==0){
                 data[i][0] = r0;
@@ -178,6 +179,7 @@ public class lbl3 {
         sumV = 0;
         sumF = 0;
 //        System.out.println("" +" " + "R" + " " + "B" + " " + "V" + " " + "C(λ,R)");
+        data = new double [6][4];
         for (int i = 0; i<=zz;i++){
             if (i==0){
                 data[i][0] = r0;
